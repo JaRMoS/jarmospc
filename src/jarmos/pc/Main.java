@@ -38,7 +38,7 @@ public class Main {
 	 * @throws ModelManagerException 
 	 */
 	public static void main(String[] args) throws ModelManagerException {
-		FileModelManager f = new FileModelManager("models");
+		FileModelManager f = new FileModelManager();
 		f.useModel("demo8");
 		
 		RBContainer rb = new RBContainer();
