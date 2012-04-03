@@ -6,19 +6,9 @@ package jarmos.pc.visual;
 import jarmos.visual.OpenGLBase;
 import jarmos.visual.VisualizationData;
 
-import java.awt.Frame;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.awt.event.MouseWheelEvent;
-import java.awt.event.MouseWheelListener;
-
 import javax.media.opengl.GL2;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLEventListener;
-import javax.media.opengl.awt.GLCanvas;
-
-import com.jogamp.opengl.util.Animator;
 
 /**
  * @author CreaByte
