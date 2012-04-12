@@ -39,7 +39,7 @@ public class Main {
 	 */
 	public static void main(String[] args) throws ModelManagerException {
 		FileModelManager f = new FileModelManager();
-		f.useModel("demo8");
+		f.useModel("rbm_advec");
 		
 		RBContainer rb = new RBContainer();
 		rb.loadModel(f);
