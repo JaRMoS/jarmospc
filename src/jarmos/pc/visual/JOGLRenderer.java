@@ -16,8 +16,8 @@ import javax.media.opengl.GLEventListener;
  */
 public class JOGLRenderer extends OpenGLBase implements GLEventListener {
 
-	public JOGLRenderer(VisualizationData vData) {
-		super(vData);
+	public JOGLRenderer(VisualizationData vData, int width, int height) {
+		super(vData, width, height);
 	}
 
 	/**
@@ -152,11 +152,6 @@ public class JOGLRenderer extends OpenGLBase implements GLEventListener {
 		gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		gl.glMatrixMode(GL2.GL_PROJECTION);
 
-		float exrat; // marginal extension ratio
-		if (is2D())
-			exrat = 0.65f;
-		else
-			exrat = 0.95f;
 		// orthographic view
 		float[] o = getOrtographicProj();
 		gl.glOrthof(o[0], o[1], o[2], o[3], o[4], o[5]);
@@ -191,6 +186,7 @@ public class JOGLRenderer extends OpenGLBase implements GLEventListener {
 	 */
 	@Override
 	public void reshape(GLAutoDrawable drawable, int x, int y, int w, int h) {
+		setSize(w, h);
 		GL2 gl = drawable.getGL().getGL2();
 		gl.glViewport(0, 0, w, h);
 	}

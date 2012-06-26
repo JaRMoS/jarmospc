@@ -89,7 +89,7 @@ public class Main {
 		// GLCapabilities caps = new GLCapabilities(GLProfile.getDefault());
 		// GLCanvas canvas = new GLCanvas(caps);
 
-		final JOGLRenderer rend = new JOGLRenderer(vData);
+		final JOGLRenderer rend = new JOGLRenderer(vData, 700, 400);
 		canvas.addGLEventListener(rend);
 
 		canvas.addMouseListener(new MouseListener() {
