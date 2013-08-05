@@ -7,6 +7,7 @@ import jarmos.SimulationResult;
 import jarmos.geometry.GeometryData;
 import jarmos.io.AModelManager.ModelManagerException;
 import jarmos.io.FileModelManager;
+import jarmos.io.WebModelManager;
 import jarmos.pc.visual.JOGLRenderer;
 import jarmos.visual.ColorGenerator;
 import jarmos.visual.VisualizationData;
@@ -17,6 +18,8 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import javax.media.opengl.awt.GLCanvas;
 
@@ -27,43 +30,50 @@ import com.jogamp.opengl.util.Animator;
 
 /**
  * @author CreaByte
- *
+ * 
  */
 public class Main {
-	
+
 	private float x = 0, y = 0;
 
 	/**
 	 * @param args
-	 * @throws ModelManagerException 
+	 * @throws ModelManagerException
 	 */
 	public static void main(String[] args) throws ModelManagerException {
-		FileModelManager f = new FileModelManager();
+		WebModelManager f;
+		try {
+			f = new WebModelManager("http://www.agh.ians.uni-stuttgart.de/jarmosa");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+			return;
+		}
 		f.useModel("rbm_advec");
-		
+//		f.useModel("demo7");
+
 		RBContainer rb = new RBContainer();
 		rb.loadModel(f);
-		
+
 		// Perform the solve
-		RBSystem s=rb.mRbSystem;
+		RBSystem s = rb.mRbSystem;
 		double[] par = s.getParams().getRandomParam();
 		s.getParams().setCurrent(par);
 		s.computeRBSolution(s.getNBF());
 		SimulationResult res = s.getSimulationResults();
-		
-//		s.performSweep(0, 4);
-//		SimulationResult res = s.getSweepSimResults();
-		
+
+		// s.performSweep(0, 4);
+		// SimulationResult res = s.getSweepSimResults();
+
 		GeometryData g = rb.mRbSystem.getGeometry();
 		VisualizationData v = new VisualizationData(g);
-		
+
 		v.useResult(res);
 		v.computeVisualFeatures(new ColorGenerator());
-				
+
 		Main m = new Main();
 		m.visualize(v);
 	}
-	
+
 	public void visualize(VisualizationData vData) {
 		final Frame frame = new java.awt.Frame("Model visualization");
 		frame.setSize(400, 600);
@@ -101,7 +111,7 @@ public class Main {
 					rend.nextColorField();
 					break;
 				case MouseEvent.BUTTON3:
-					rend.isFrontFace = !rend.isFrontFace; 
+					rend.isFrontFace = !rend.isFrontFace;
 					break;
 				}
 			}
