@@ -14,7 +14,6 @@
  * Current version includes selected files from
  * http://jogamp.org/deployment/archive/master/gluegen_646-joal_408-jogl_930-jocl_756/archive/jogamp-all-platforms.7z
  * 
- * @ingroup jarmospc
  * @{
  * @package jarmos.pc
  * @short JaRMoSPC main package
