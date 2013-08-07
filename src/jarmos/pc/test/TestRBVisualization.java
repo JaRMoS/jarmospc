@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package jarmos.pc.test;
 
 import jarmos.SimulationResult;
@@ -10,11 +8,11 @@ import jarmos.io.FileModelManager;
 import jarmos.pc.Main;
 import jarmos.visual.ColorGenerator;
 import jarmos.visual.VisualizationData;
-import rb.java.RBContainer;
-import rb.java.RBSystem;
+import rb.RBContainer;
+import rb.RBSystem;
 
 /**
- * @author CreaByte
+ * @author Daniel Wirtz
  *
  */
 public class TestRBVisualization {

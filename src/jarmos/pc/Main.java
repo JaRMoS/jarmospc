@@ -1,12 +1,8 @@
-/**
- * 
- */
 package jarmos.pc;
 
 import jarmos.SimulationResult;
 import jarmos.geometry.GeometryData;
 import jarmos.io.AModelManager.ModelManagerException;
-import jarmos.io.FileModelManager;
 import jarmos.io.WebModelManager;
 import jarmos.pc.visual.JOGLRenderer;
 import jarmos.visual.ColorGenerator;
@@ -19,18 +15,18 @@ import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.net.MalformedURLException;
-import java.net.URL;
 
 import javax.media.opengl.awt.GLCanvas;
 
-import rb.java.RBContainer;
-import rb.java.RBSystem;
+import rb.RBContainer;
+import rb.RBSystem;
 
 import com.jogamp.opengl.util.Animator;
 
 /**
- * @author CreaByte
+ * Main program for desktop-based reduced model simulation using Java.
  * 
+ * @author Daniel Wirtz
  */
 public class Main {
 

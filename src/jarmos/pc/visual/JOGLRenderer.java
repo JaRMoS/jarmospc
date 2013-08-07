@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package jarmos.pc.visual;
 
 import jarmos.visual.OpenGLBase;
@@ -11,7 +9,12 @@ import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLEventListener;
 
 /**
- * @author CreaByte
+ * Provides the OpenGL rendering routines for the JOGL package
+ * 
+ * For details on the Java OpenGL framework see http://www.jogamp.org
+ * or http://jogamp.org/wiki/index.php/Downloading_and_installing_JOGL
+ * 
+ * @author Daniel Wirtz
  * 
  */
 public class JOGLRenderer extends OpenGLBase implements GLEventListener {
@@ -30,7 +33,7 @@ public class JOGLRenderer extends OpenGLBase implements GLEventListener {
 		gl.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 		gl.glClear(GL2.GL_COLOR_BUFFER_BIT | GL2.GL_DEPTH_BUFFER_BIT);
 
-		if (!is2D()) // enable depth test for 3D rendering
+		if (!is2D()) // enable depth rb.test for 3D rendering
 			gl.glEnable(GL2.GL_DEPTH_TEST);
 
 		if ((isFrontFace) || (is2D())) {
