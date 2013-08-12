@@ -2,7 +2,9 @@ package jarmos.pc;
 
 import jarmos.SimulationResult;
 import jarmos.geometry.GeometryData;
+import jarmos.io.AModelManager;
 import jarmos.io.AModelManager.ModelManagerException;
+import jarmos.io.FileModelManager;
 import jarmos.io.WebModelManager;
 import jarmos.pc.visual.JOGLRenderer;
 import jarmos.visual.ColorGenerator;
@@ -14,9 +16,11 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
+import java.io.File;
 import java.net.MalformedURLException;
 
 import javax.media.opengl.awt.GLCanvas;
+import javax.swing.JFileChooser;
 
 import rb.RBContainer;
 import rb.RBSystem;
@@ -37,15 +41,35 @@ public class Main {
 	 * @throws ModelManagerException
 	 */
 	public static void main(String[] args) throws ModelManagerException {
-		WebModelManager f;
-		try {
-			f = new WebModelManager("http://www.agh.ians.uni-stuttgart.de/jarmosa");
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-			return;
+
+		// Create a file chooser
+		JFileChooser fc = new JFileChooser();
+		fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+		AModelManager f = null;
+		if (args != null && args.length == 1) {
+			File dir = new File(args[0]);
+			if (dir.exists() && dir.isDirectory()) {
+				f = new FileModelManager(dir.getParent());
+				f.useModel(dir.getName());
+			} else {
+				throw new RuntimeException("Directory not found or invalid: " + args[0]);
+			}
+		} else if (fc.showDialog(null, "Select model directory") == JFileChooser.APPROVE_OPTION) {
+			File file = fc.getSelectedFile();
+			if (file.exists() && file.isDirectory()) {
+				f = new FileModelManager(file.getParent());
+				f.useModel(file.getName());
+			}
+		} else {
+			try {
+				f = new WebModelManager("http://www.agh.ians.uni-stuttgart.de/jarmosa");
+				f.useModel("rbm_advec");
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+				return;
+			}
 		}
-		f.useModel("rbm_advec");
-//		f.useModel("demo7");
 
 		RBContainer rb = new RBContainer();
 		rb.loadModel(f);
