@@ -1,7 +1,8 @@
 /**
  * @defgroup jarmospc JaRMoS PC
- * @ingroup jkermor jrb jarmosbase
  * @short JaRMoS package for reduced simulations on desktop computers
+ * 
+ * \note This module depends on \ref jarmosbase, \ref jkermor and \ref jrb.
  * 
  * This package enables simple simulation of JaRMoS models on a desktop environment. The current status lacks any GUI
  * interface for model selection. This yet has to be done in the jarmos.pc.Main program.
